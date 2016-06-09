@@ -11,6 +11,7 @@
     return YES;
 }
 
+// This method filters an array of fruits, so that the return array just has apples.
 -(NSArray *)pickApplesFromFruits:(NSArray *)fruits
 {
     NSPredicate *applesPredicate = [NSPredicate predicateWithFormat:@"self LIKE 'apple'"];
@@ -18,9 +19,12 @@
     return applesOnly;
 }
 
+// This method returns an array of the holidays listed in a given season.
 -(NSArray *)holidaysInSeason:(NSString *)season inDatabase:(NSDictionary *)database
 {
+// 1. Isolate one season from the database. Each season is a key and its associated holidays a subdictionary in the database. Capture the holiday subdictionary in a new season-specific dictionary, by assigning it to database[key] where key is the season you want.
     NSDictionary *holidaysInSeasonWithSupplies = database[season];
+// 2. The holidays for the chosen season are keys in the season-specific dictionary, so use allKeys to capture all the holidays in an array.
     NSArray *holidaysInSeason = [holidaysInSeasonWithSupplies allKeys];
     NSLog(@"These are the holidays in the %@ season: %@", season, holidaysInSeason);
     return holidaysInSeason;
